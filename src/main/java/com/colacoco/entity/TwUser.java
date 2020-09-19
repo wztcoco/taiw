@@ -49,5 +49,7 @@ public class TwUser implements Serializable {
 
     private String userMoney;
 
+    private Integer userRank;
 
+    private String userSalt;
 }
