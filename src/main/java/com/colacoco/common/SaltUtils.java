@@ -1,4 +1,4 @@
-package com.colacoco.common.APIParams;
+package com.colacoco.common;
 
 import java.util.Random;
 

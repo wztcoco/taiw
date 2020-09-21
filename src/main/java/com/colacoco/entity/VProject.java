@@ -43,5 +43,7 @@ public class VProject implements Serializable {
 
     private Long projectNum;
 
+    private String userJob;
 
+    private String userPhone;
 }

@@ -1,12 +1,15 @@
 package com.colacoco.config;
 
 import com.colacoco.shiro.CustomerRealm;
+import com.colacoco.shiro.MyHttpAuthenticationFilter;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,9 +21,14 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean getShiroFilterFactoryBean (DefaultWebSecurityManager defaultWebSecurityManager){
         final ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
-
+        Map<String, Filter> filter = new HashMap<>();
+        filter.put("authc",new MyHttpAuthenticationFilter());
+        shiroFilterFactoryBean.setFilters(filter);
         Map<String,String> map = new HashMap<String,String>();
-        map.put("/login","authc");
+//        map.put("/login","anon");
+//        map.put("/logout","anon");
+//        map.put("/register","anon");
+//        map.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;
@@ -36,6 +44,10 @@ public class ShiroConfig {
     @Bean
     public Realm getRealm(){
         CustomerRealm customerRealm = new CustomerRealm();
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        credentialsMatcher.setHashAlgorithmName("MD5");
+        credentialsMatcher.setHashIterations(1024);
+        customerRealm.setCredentialsMatcher(credentialsMatcher);
         return customerRealm;
     }
 

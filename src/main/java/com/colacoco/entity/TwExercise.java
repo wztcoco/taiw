@@ -1,0 +1,48 @@
+package com.colacoco.entity;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author colacoco
+ * @since 2020-09-21
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TwExercise implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "exercise_id", type = IdType.AUTO)
+    private Integer exerciseId;
+
+    private String exerciseText;
+
+    @TableField("exercise_A")
+    private String exerciseA;
+
+    @TableField("exercise_B")
+    private String exerciseB;
+
+    @TableField("exercise_C")
+    private String exerciseC;
+
+    @TableField("exercise_D")
+    private String exerciseD;
+
+    private Integer deleteStatus;
+
+    private Integer projectId;
+
+
+}

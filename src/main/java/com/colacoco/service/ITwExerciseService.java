@@ -1,6 +1,6 @@
 package com.colacoco.service;
 
-import com.colacoco.entity.TwUser;
+import com.colacoco.entity.TwExercise;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,7 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author colacoco
- * @since 2020-07-09
+ * @since 2020-09-21
  */
-public interface ITwUserService extends IService<TwUser> {
+public interface ITwExerciseService extends IService<TwExercise> {
+
 }

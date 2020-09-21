@@ -52,4 +52,6 @@ public class TwUser implements Serializable {
     private Integer userRank;
 
     private String userSalt;
+
+
 }
