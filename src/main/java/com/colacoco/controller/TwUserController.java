@@ -1,14 +1,18 @@
 package com.colacoco.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.colacoco.common.APIParams.LoginParams;
+import com.colacoco.common.APIParams.UserDetailResult;
 import com.colacoco.common.Result;
 import com.colacoco.entity.TwUser;
 import com.colacoco.service.ITwUserService;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * <p>
@@ -19,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-07-09
  */
 @RestController
-@RequestMapping("/tw-user")
 public class TwUserController {
     @Autowired
     ITwUserService userService;
@@ -29,5 +32,32 @@ public class TwUserController {
         TwUser user =  userService.getById(1L);
         return Result.succ(200,"操作成功", user);
     }
-
+    @PostMapping("/getUserDetail")
+    @ResponseBody
+//    public Result getUserDetail(){
+//        UserDetailResult userDetailResult = new UserDetailResult();
+//        System.out.println(SecurityUtils.getSubject().getSession().getAttribute("userSession"));
+//        try{
+//            BeanUtils.copyProperties(userDetailResult,SecurityUtils.getSubject().getSession().getAttribute("userSession"));
+//            return Result.succ(userDetailResult);
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+//        return Result.fail("获取失败");
+//    }
+    public Result getUserDetail(@RequestBody TwUser userParam){
+        UserDetailResult userDetailResult = new UserDetailResult();
+        TwUser user =  userService.getOne(new QueryWrapper<TwUser>().eq("user_id",userParam.getUserId()));
+        try{
+            BeanUtils.copyProperties(userDetailResult,user);
+            return Result.succ(userDetailResult);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return Result.fail("获取失败");
+    }
 }

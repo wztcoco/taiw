@@ -27,26 +27,27 @@ public class AccountController {
     @PostMapping("/login")
         @ResponseBody
         public Result login(@RequestBody LoginParams params){
-//            Subject subject = SecurityUtils.getSubject();
-//            try{
-//                subject.login(new UsernamePasswordToken(params.getUserName(),params.getUserPsd()));
-//                return Result.succ("登陆成功");
-//            } catch (UnknownAccountException e){
-//                e.printStackTrace();
-//                System.out.println("用户名错误!");
-//            } catch (IncorrectCredentialsException e){
-//                e.printStackTrace();
-//                System.out.println("密码错误!");
-//            }
-//            return Result.fail("错误的用户名或密码");
+            Subject subject = SecurityUtils.getSubject();
+            try{
+                subject.login(new UsernamePasswordToken(params.getUserName(),params.getUserPsd()));
 
-            TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",params.getUserName()));
-            Md5Hash md5Hash = new Md5Hash(params.getUserPsd(), user.getUserSalt(), 1024);
-            if(user==null)
-                return Result.fail("错误的用户名或密码");
-            if(!user.getUserPsd().equals(md5Hash.toHex()))
-                return Result.fail("错误的用户名或密码");
-            return Result.succ(user);
+                return Result.succ(subject.getSession().getAttribute("userSessionId"));
+            } catch (UnknownAccountException e){
+                e.printStackTrace();
+                System.out.println("用户名错误!");
+            } catch (IncorrectCredentialsException e){
+                e.printStackTrace();
+                System.out.println("密码错误!");
+            }
+            return Result.fail("错误的用户名或密码");
+
+//            TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",params.getUserName()));
+//            Md5Hash md5Hash = new Md5Hash(params.getUserPsd(), user.getUserSalt(), 1024);
+//            if(user==null)
+//                return Result.fail("错误的用户名或密码");
+//            if(!user.getUserPsd().equals(md5Hash.toHex()))
+//                return Result.fail("错误的用户名或密码");
+//            return Result.succ(user);
         }
     @PostMapping("/logout")
     @ResponseBody

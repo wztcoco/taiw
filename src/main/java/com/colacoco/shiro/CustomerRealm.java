@@ -13,6 +13,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.util.ObjectUtils;
@@ -34,12 +35,12 @@ public class CustomerRealm extends AuthorizingRealm {
         ITwUserService userService = (ITwUserService)ApplicationContextUtils.getBean("twUserServiceImpl");
         TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",principal));
         if(!ObjectUtils.isEmpty(user)){
-            System.out.println("=================================");
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getUserPsd(), ByteSource.Util.bytes(user.getUserSalt()), this.getName());
+            Session session = SecurityUtils.getSubject().getSession();
+            session.setAttribute("userSession",user);
+            session.setAttribute("userSessionId", user.getUserId());
             return simpleAuthenticationInfo;
         }
-        System.out.println(principal);
-        System.out.println(user);
         return null;
     }
 }

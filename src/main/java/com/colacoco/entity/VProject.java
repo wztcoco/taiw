@@ -39,6 +39,8 @@ public class VProject implements Serializable {
 
     private String userName;
 
+    private String typeName;
+
     private String coverImg;
 
     private Long projectNum;

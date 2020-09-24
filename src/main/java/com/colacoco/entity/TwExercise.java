@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author colacoco
- * @since 2020-09-21
+ * @since 2020-09-22
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -43,6 +43,14 @@ public class TwExercise implements Serializable {
     private Integer deleteStatus;
 
     private Integer projectId;
+
+    private Integer exerciseOrder;
+
+    private String exerciseTitle;
+
+    private Integer exerciseScore;
+
+    private Integer exerciseAnswer;
 
 
 }

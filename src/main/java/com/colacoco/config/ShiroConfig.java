@@ -6,6 +6,7 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,9 +26,9 @@ public class ShiroConfig {
         filter.put("authc",new MyHttpAuthenticationFilter());
         shiroFilterFactoryBean.setFilters(filter);
         Map<String,String> map = new HashMap<String,String>();
-//        map.put("/login","anon");
-//        map.put("/logout","anon");
-//        map.put("/register","anon");
+        map.put("/login","anon");
+        map.put("/logout","anon");
+        map.put("/register","anon");
 //        map.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 

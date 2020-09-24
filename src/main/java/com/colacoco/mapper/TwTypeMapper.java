@@ -1,6 +1,6 @@
 package com.colacoco.mapper;
 
-import com.colacoco.entity.TwExercise;
+import com.colacoco.entity.TwType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author colacoco
  * @since 2020-09-22
  */
-public interface TwExerciseMapper extends BaseMapper<TwExercise> {
+public interface TwTypeMapper extends BaseMapper<TwType> {
 
 }

@@ -1,8 +1,8 @@
 package com.colacoco.service.impl;
 
-import com.colacoco.entity.TwExercise;
-import com.colacoco.mapper.TwExerciseMapper;
-import com.colacoco.service.ITwExerciseService;
+import com.colacoco.entity.TwType;
+import com.colacoco.mapper.TwTypeMapper;
+import com.colacoco.service.ITwTypeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-09-22
  */
 @Service
-public class TwExerciseServiceImpl extends ServiceImpl<TwExerciseMapper, TwExercise> implements ITwExerciseService {
+public class TwTypeServiceImpl extends ServiceImpl<TwTypeMapper, TwType> implements ITwTypeService {
 
 }

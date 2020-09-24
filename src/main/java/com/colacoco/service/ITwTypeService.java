@@ -1,6 +1,6 @@
 package com.colacoco.service;
 
-import com.colacoco.entity.TwExercise;
+import com.colacoco.entity.TwType;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author colacoco
  * @since 2020-09-22
  */
-public interface ITwExerciseService extends IService<TwExercise> {
+public interface ITwTypeService extends IService<TwType> {
 
 }

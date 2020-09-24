@@ -7,7 +7,6 @@ import com.colacoco.entity.VProject;
 import com.colacoco.service.IVProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.text.SimpleDateFormat;
 
 import java.util.List;
 
@@ -23,6 +22,7 @@ import java.util.List;
 public class VProjectController {
     @Autowired
     IVProjectService projectServiceView;
+
     @PostMapping("/getProjectList")
         @ResponseBody
         public Result getProjectList( ) {
