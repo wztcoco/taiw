@@ -12,4 +12,5 @@ import java.util.List;
 public class ProjectDetailResult implements Serializable {
     private VProject project;
     private List<TwExercise> list;
+    private Integer doneNum;
 }
