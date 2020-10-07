@@ -1,10 +1,9 @@
 package com.colacoco.controller;
 
 
+import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.colacoco.common.APIParams.ProjectDetailParams;
-import com.colacoco.common.APIParams.ProjectDetailResult;
-import com.colacoco.common.APIParams.UserDetailResult;
+import com.colacoco.common.APIParams.*;
 import com.colacoco.common.Result;
 import com.colacoco.entity.TwExercise;
 import com.colacoco.entity.TwUserExerciseBind;
@@ -22,6 +21,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +62,20 @@ public class TwExerciseController {
         projectDetailResult.setProject(project);
         projectDetailResult.setDoneNum(userExerciseBindList.size());
         return Result.succ(projectDetailResult);
+    }
+
+    @PostMapping("/getExerciseDetail")
+    @ResponseBody
+    public Result getExerciseDetail(@RequestBody ExerciseDetailParams exerciseDetailParams) {
+        UserExerciseResult userExerciseResult = new UserExerciseResult();
+        TwExercise exercise = exerciseService.getOne(new QueryWrapper<TwExercise>().eq("exercise_id",exerciseDetailParams.getExerciseId()));
+        VUserExerciseBind userExerciseBind = userExerciseBindService.getOne(new QueryWrapper<VUserExerciseBind>().eq("exercise_id",exerciseDetailParams.getExerciseId()).eq("user_id",exerciseDetailParams.getUserId()));
+        BeanUtil.copyProperties(exercise,userExerciseResult);
+        if(userExerciseBind!=null)
+        {
+            userExerciseResult.setUserAnswer(userExerciseBind.getBindAnswer());
+        }
+        return Result.succ(userExerciseResult);
     }
 
 }
