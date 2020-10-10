@@ -11,6 +11,6 @@ import java.util.List;
 @Data
 public class ProjectDetailResult implements Serializable {
     private VProject project;
-    private List<TwExercise> list;
+    private List<UserExerciseResult> list;
     private Integer doneNum;
 }

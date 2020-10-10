@@ -3,9 +3,11 @@ package com.colacoco.common.APIParams;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.colacoco.entity.TwAnswer;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 public class UserExerciseResult implements Serializable {
@@ -15,13 +17,9 @@ public class UserExerciseResult implements Serializable {
 
     private String exerciseText;
 
-    private String exerciseA;
+    private Integer exerciseType;
 
-    private String exerciseB;
-
-    private String exerciseC;
-
-    private String exerciseD;
+    private String exerciseTypeName;
 
     private Integer deleteStatus;
 
@@ -33,7 +31,13 @@ public class UserExerciseResult implements Serializable {
 
     private Integer exerciseScore;
 
-    private Integer exerciseAnswer;
+    private String exerciseAnswer;
 
-    private Integer userAnswer;
+    private String userAnswer;
+
+    private Integer AnswerNumber;
+
+    private Integer AnswerTrueNumber;
+
+    private List<TwAnswer> answerList;
 }

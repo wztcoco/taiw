@@ -58,7 +58,7 @@ public class AccountController {
     }
     @PostMapping("/register")
     public Result register(@RequestBody LoginParams params){
-        TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",params.getUserName()));
+        TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",params.getUserName()).eq("delete_status",0));
         if(user==null) {
             String salt = SaltUtils.getSalt(8);
             Md5Hash md5Hash = new Md5Hash(params.getUserPsd(), salt, 1024);

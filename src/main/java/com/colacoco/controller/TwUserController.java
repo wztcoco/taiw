@@ -49,7 +49,7 @@ public class TwUserController {
 //    }
     public Result getUserDetail(@RequestBody TwUser userParam){
         UserDetailResult userDetailResult = new UserDetailResult();
-        TwUser user =  userService.getOne(new QueryWrapper<TwUser>().eq("user_id",userParam.getUserId()));
+        TwUser user =  userService.getOne(new QueryWrapper<TwUser>().eq("user_id",userParam.getUserId()).eq("delete_status",0));
         try{
             BeanUtils.copyProperties(userDetailResult,user);
             return Result.succ(userDetailResult);

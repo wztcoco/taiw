@@ -35,8 +35,6 @@ public class VProject implements Serializable {
 
     private Integer hotPoint;
 
-    private Integer deleteStatus;
-
     private String userName;
 
     private String typeName;

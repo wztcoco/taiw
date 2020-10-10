@@ -28,17 +28,7 @@ public class TwExercise implements Serializable {
 
     private String exerciseText;
 
-    @TableField("exercise_A")
-    private String exerciseA;
-
-    @TableField("exercise_B")
-    private String exerciseB;
-
-    @TableField("exercise_C")
-    private String exerciseC;
-
-    @TableField("exercise_D")
-    private String exerciseD;
+    private Integer exerciseType;
 
     private Integer deleteStatus;
 
@@ -50,7 +40,7 @@ public class TwExercise implements Serializable {
 
     private Integer exerciseScore;
 
-    private Integer exerciseAnswer;
+    private String exerciseAnswer;
 
 
 }

@@ -33,7 +33,7 @@ public class CustomerRealm extends AuthorizingRealm {
         System.out.println("=================================");
         String principal = (String) authenticationToken.getPrincipal();
         ITwUserService userService = (ITwUserService)ApplicationContextUtils.getBean("twUserServiceImpl");
-        TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",principal));
+        TwUser user = userService.getOne(new QueryWrapper<TwUser>().eq("user_name",principal).eq("delete_status",0));
         if(!ObjectUtils.isEmpty(user)){
             SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getUserPsd(), ByteSource.Util.bytes(user.getUserSalt()), this.getName());
             Session session = SecurityUtils.getSubject().getSession();

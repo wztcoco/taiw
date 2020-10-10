@@ -31,7 +31,7 @@ public class VUserExerciseBind implements Serializable {
 
     private Integer deleteStatus;
 
-    private Integer bindAnswer;
+    private String bindAnswer;
 
     private Integer projectId;
 
