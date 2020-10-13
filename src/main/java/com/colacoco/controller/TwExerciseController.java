@@ -3,19 +3,17 @@ package com.colacoco.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.colacoco.common.APIParams.*;
-import com.colacoco.common.Result;
+import com.colacoco.common.APIParams.ExerciseDetailParams;
+import com.colacoco.common.APIParams.ProjectDetailParams;
+import com.colacoco.common.APIParams.ProjectDetailResult;
+import com.colacoco.common.APIParams.UserExerciseResult;
 import com.colacoco.entity.*;
-import com.colacoco.mapper.TwExerciseMapper;
-import com.colacoco.mapper.TwUserExerciseBindMapper;
-import com.colacoco.mapper.VProjectMapper;
+import com.colacoco.common.Result;
 import com.colacoco.service.*;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

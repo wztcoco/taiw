@@ -2,13 +2,11 @@ package com.colacoco.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.colacoco.common.APIParams.LoginParams;
 import com.colacoco.common.APIParams.UserDetailResult;
 import com.colacoco.common.Result;
 import com.colacoco.entity.TwUser;
 import com.colacoco.service.ITwUserService;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

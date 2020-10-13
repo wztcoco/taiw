@@ -7,7 +7,6 @@ import com.colacoco.common.Result;
 import com.colacoco.entity.TwUser;
 import com.colacoco.service.ITwUserService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;

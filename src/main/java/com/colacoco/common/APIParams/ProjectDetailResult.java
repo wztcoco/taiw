@@ -1,7 +1,6 @@
 package com.colacoco.common.APIParams;
 
 
-import com.colacoco.entity.TwExercise;
 import com.colacoco.entity.VProject;
 import lombok.Data;
 

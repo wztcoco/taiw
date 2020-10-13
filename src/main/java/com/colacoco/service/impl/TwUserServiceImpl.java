@@ -1,6 +1,5 @@
 package com.colacoco.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.colacoco.entity.TwUser;
 import com.colacoco.mapper.TwUserMapper;
 import com.colacoco.service.ITwUserService;
