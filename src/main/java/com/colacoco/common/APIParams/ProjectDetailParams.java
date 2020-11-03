@@ -9,6 +9,7 @@ public class ProjectDetailParams implements Serializable{
 
     private Integer userId;
     private Integer pageSize;
+    private Integer exerciseSection;
     private Integer currentPage;
     private Integer projectId;
 }

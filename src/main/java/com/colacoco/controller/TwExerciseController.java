@@ -11,6 +11,7 @@ import com.colacoco.entity.*;
 import com.colacoco.common.Result;
 import com.colacoco.service.*;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +46,10 @@ public class TwExerciseController {
     public Result getProjectDetail(@RequestBody ProjectDetailParams projectDetailParams) {
         Integer projectId = projectDetailParams.getProjectId();
         Integer userId = projectDetailParams.getUserId();
+        Integer exerciseSection = projectDetailParams.getExerciseSection();
+        //分页
         PageHelper.startPage(projectDetailParams.getCurrentPage(), projectDetailParams.getPageSize());
-        List<TwExercise> exerciseList = exerciseService.list(new QueryWrapper<TwExercise>().eq("project_id",projectId).orderByAsc("exercise_order").eq("delete_status",0));
+        List<TwExercise> exerciseList = exerciseService.list(new QueryWrapper<TwExercise>().eq("project_id",projectId).orderByAsc("exercise_order").eq("delete_status",0).eq("exercise_section",exerciseSection));
         VProject project = projectService.getOne(new QueryWrapper<VProject>().eq("project_id",projectId));
         ProjectDetailResult projectDetailResult = new ProjectDetailResult();
         if(project==null)
@@ -90,9 +93,11 @@ public class TwExerciseController {
             }
             userExerciseResults.add(userExerciseResult);
         }
+        PageInfo<TwExercise> pageInfo = new PageInfo<TwExercise>(exerciseList);
         projectDetailResult.setList(userExerciseResults);
         projectDetailResult.setProject(project);
         projectDetailResult.setDoneNum(userAnswerList.size());
+        projectDetailResult.setExerciseNum(pageInfo.getTotal());
         return Result.succ(projectDetailResult);
     }
 
@@ -113,4 +118,9 @@ public class TwExerciseController {
         return Result.succ(userExerciseResult);
     }
 
+    @GetMapping("/getExerciseSectionList/{projectId}")
+    public Result getExerciseSectionList(@PathVariable String projectId){
+        List<TwExercise> exerciseList = exerciseService.list(new QueryWrapper<TwExercise>().select("DISTINCT exercise_section").orderByAsc("exercise_section"));
+        return Result.succ(exerciseList);
+    }
 }

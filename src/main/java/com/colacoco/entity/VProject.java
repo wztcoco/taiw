@@ -1,5 +1,6 @@
 package com.colacoco.entity;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
@@ -25,7 +26,7 @@ public class VProject implements Serializable {
 
     private String projectName;
 
-    private LocalDateTime projectTime;
+    private Date projectTime;
 
     private Integer typeId;
 

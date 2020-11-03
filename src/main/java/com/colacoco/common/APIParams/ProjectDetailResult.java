@@ -12,4 +12,5 @@ public class ProjectDetailResult implements Serializable {
     private VProject project;
     private List<UserExerciseResult> list;
     private Integer doneNum;
+    private long exerciseNum;
 }

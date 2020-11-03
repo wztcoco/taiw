@@ -40,6 +40,8 @@ public class TwExercise implements Serializable {
 
     private Integer exerciseScore;
 
+    private Integer exerciseSection;
+
     private String exerciseAnswer;
 
 
